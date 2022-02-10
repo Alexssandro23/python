@@ -1,0 +1,69 @@
+
+lista=[]
+
+#adicionar item no inventario
+def adicionar_item (lista):
+    resposta='S'
+    while resposta=='S':
+        equipamento=[input("nome...:"),
+                    float(input("preço....:")),
+                    int(input("ID..:")),
+                    input("departamento..:")]
+        lista.append(equipamento)
+        resposta=input("digitte 'S' para continuar..:").upper()
+
+#exibir dados do inventário
+def exibir_dados (lista):
+    for elemento in lista:
+        print('nome..',elemento[0])
+        print('preço..',elemento[1])
+        print('ID..:',elemento[2])
+        print('departamento..:',elemento[3])
+
+#localizar um item no inventario
+def localizar (lista):
+    busca=input("Digite o nome do equipamento que deseja buscar: ")
+    for elemento in lista:    
+        if busca==elemento[0]:
+            print("Valor..: ", elemento[1])
+            print("Serial.:", elemento[2])
+
+#depreciar itens no inventario
+def depreciar (lista):
+    depreciacao=input("Digite o nome do equipamento que será depreciado: ")
+    for elemento in lista:
+        if depreciacao==elemento[0]:
+            print('preço antigo..:',elemento[1])
+            elemento[1] *= 0.9
+            print('preço novo..:',elemento[1])
+#excluir um item do inventario
+def excluir (lista):
+    ID=int(input("Digite o serial do equipamento que será excluído: "))
+    for elemento in lista:
+        if ID==elemento[2]:
+            lista.remove(elemento)
+    return "items excluidos"        
+
+#resumo de valores do inventário
+def resumir_valores (lista):
+    valores=[]
+    for elemento in lista:
+        valores.append(elemento[1])
+    if len(valores)>0:
+        print('maior valor..:',max(valores))    
+        print('menor valor...:',min(valores))    
+        print('soma de todos os valores..:',sum(valores))    
+
+
+print('preenchendo...\n')
+adicionar_item(lista)
+print('\nexibindo dados...\n')
+exibir_dados(lista)
+print('\nlocalizando...\n')
+localizar(lista)
+print("\ndepreciando....\n")
+depreciar(lista)
+print('excluir item...\n')
+print(excluir(lista))
+print('\nexibindo dados...\n')
+exibir_dados(lista)
